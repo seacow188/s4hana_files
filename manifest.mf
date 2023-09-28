@@ -1,0 +1,23 @@
+Manifest-Version: 1.0 
+
+# HEADER
+keyname: SWPM 
+keyrelease: 2.0
+keyvendor: sap.com
+keylocation: SAP SE
+supportpackage: 14
+
+# ASSEMBLY SECTION
+assembly time: 2023-3-28 1:20:59 
+delivery package: lkg_swpm20
+code line: LMTS_027_REL
+platform: LINUX_X86_64
+label: IND:SLTOOLSET:2.0:SWPM:*:LINUX_X86_64:*
+compilation mode: dbg
+
+# LATEST CHANGE LIST
+latest change list of control file: 210034
+latest change list of product.catalog: 210034
+
+# SAPINST FRAMEWORK
+SAPinst framework release: 753.0.2

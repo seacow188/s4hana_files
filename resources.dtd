@@ -1,0 +1,39 @@
+<!--
+DTD for SD tool resources
+  version 1.0
+  version: $Id: //inst/inst_scripts/lmts_027_REL/dtds/resources.dtd#1 $
+-->
+
+<!-- toplevel XML tag -->
+<!ELEMENT resourcepool (criteriapool?, resource*)>
+<!ATTLIST resourcepool
+  version    CDATA #REQUIRED
+  changelist CDATA #IMPLIED>
+
+<!-- XML tag todefine an ordered list of supported criteria -->
+<!ELEMENT criteriapool (criteriaset)*>
+
+<!-- XML tag to define a set of possible criteria -->
+<!ELEMENT criteriaset (criterion+)>
+
+<!-- XML tag to define a single criterion -->
+<!ELEMENT criterion (#PCDATA)>
+
+<!-- XML tag to separate multiple resources in different snippets -->
+<!ELEMENT resource (area)*>
+
+<!-- XML tag to create domain-like hierarchical name spaces -->
+<!ELEMENT area (area | item)*>
+<!ATTLIST area
+  name  CDATA #REQUIRED>
+
+<!-- XML tag to hold real item data, e.g. help text, images, etc. -->
+<!ELEMENT item (#PCDATA)>
+<!ATTLIST item
+  name     CDATA #REQUIRED
+  criteria CDATA #IMPLIED
+  type     CDATA #REQUIRED
+  keywords CDATA #IMPLIED
+  state    CDATA #IMPLIED
+  creator  CDATA #IMPLIED
+  modifier CDATA #IMPLIED>

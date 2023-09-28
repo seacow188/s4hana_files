@@ -1,0 +1,64 @@
+<!-- the display name of products, components etc. -->
+<!ELEMENT property EMPTY>
+<!ATTLIST property
+  name  NMTOKEN #REQUIRED
+  value CDATA   #IMPLIED
+  type  (Product) #IMPLIED>
+
+<!ELEMENT constraint EMPTY>
+<!ATTLIST constraint
+  name  NMTOKEN #REQUIRED
+  value CDATA   #IMPLIED>
+
+<!ELEMENT dialog-title (#PCDATA)>
+<!ELEMENT dialog-description (#PCDATA)>
+<!ELEMENT display-name (#PCDATA)>
+<!ELEMENT cd-name (#PCDATA)  >
+<!-- user info for products, components etc. -->
+<!ELEMENT user-info (#PCDATA)>
+<!ATTLIST user-info
+  image-id CDATA #IMPLIED
+>
+
+<!ELEMENT package (#PCDATA)>
+<!ELEMENT archive (#PCDATA)>
+<!ELEMENT repoinfo (archive*,package*)>
+
+<!-- the component (aka top level component) itself -->
+<!ELEMENT  component (display-name,user-info?,property*,constraint*, repoinfo?)>
+<!ATTLIST component
+  name                   NMTOKEN                                                   #REQUIRED
+  id                     NMTOKEN                                                   #REQUIRED
+  table                  NMTOKEN                                                   #REQUIRED
+  os-type                (ind|unix|windows)                                        "ind"
+  os                     (ind|aix|alpha|os400|dec|hp|i386|linux|os390|ptx|sun)     "ind"
+  db                     (ind|inf|ada|ora|db2|db4|db6|mss|syb)                     "ind"
+  product                CDATA                                                     "ind"
+  release                CDATA                                                     "ind"
+  ppms-component         CDATA                                                     "ind"
+  ppms-component-release CDATA                                                     "ind"
+  product-dir            CDATA                                                     #IMPLIED
+  control-file           CDATA                                                     #IMPLIED
+  id                     CDATA                                                     #IMPLIED
+  current                (true)                                                    #IMPLIED
+  output-dir             CDATA                                                     #IMPLIED
+>
+
+<!-- a set of components for a product -->
+<!ELEMENT  components
+(display-name,user-info?,property*,constraint*,((components*,component+)|(components+,
+component*)|(components+, component+)))>
+<!ATTLIST components
+	  product-dir  CDATA  #IMPLIED
+	  control-file CDATA  #IMPLIED
+          output-dir   CDATA   #IMPLIED
+>
+
+
+<!-- the catalog -->
+<!ELEMENT product-catalog (dialog-title?, dialog-description?, catalog) >
+<!ATTLIST product-catalog
+  sapinst-version CDATA #IMPLIED
+>
+<!ELEMENT catalog (display-name, cd-name?, user-info?, message-path?, (components|component)+)>
+

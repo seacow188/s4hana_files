@@ -1,0 +1,54 @@
+<!-- DTD of MessageLib messages (message pool, gui message)
+     version 1.0
+     Henrik Bennin 05/2000 - 11/2006
+-->
+
+<!ELEMENT message_pool (map_errno_to_exitcode?, area*)>
+<!ATTLIST message_pool
+  version  CDATA #REQUIRED
+  language (english|german|french) #REQUIRED
+  changelist  CDATA #IMPLIED>
+
+  <!ELEMENT map_errno_to_exitcode (exitcode)*>
+
+  <!ELEMENT exitcode (description?, errno*)>
+  <!ATTLIST exitcode
+    value  NMTOKEN #REQUIRED>
+
+  <!ELEMENT description (#PCDATA)>
+
+  <!ELEMENT errno EMPTY>
+  <!ATTLIST errno
+    value  NMTOKEN #REQUIRED>
+
+  <!ELEMENT area (area | message)*>
+  <!ATTLIST area
+      name  CDATA #REQUIRED
+      link  CDATA #IMPLIED>
+
+    <!ELEMENT message (#PCDATA | p)*>
+    <!ATTLIST message
+        name  CDATA #REQUIRED
+        link  CDATA #IMPLIED
+        errno ID    #IMPLIED>
+
+      <!ELEMENT p EMPTY>
+      <!ATTLIST p
+        nr  CDATA #REQUIRED>
+
+<!ELEMENT gui_message (#PCDATA)>
+<!ATTLIST gui_message
+    link  CDATA #IMPLIED>
+
+<!ELEMENT log_file (log_message)*>
+<!ATTLIST log_file
+  version  CDATA #REQUIRED>
+
+  <!ELEMENT log_message (#PCDATA)>
+  <!ATTLIST log_message
+    type (flow_trace|trace|info|warning|error) #REQUIRED
+    timestamp  CDATA #IMPLIED
+    source     CDATA #IMPLIED
+    module     CDATA #IMPLIED
+    function   CDATA #IMPLIED
+    position   CDATA #IMPLIED>
